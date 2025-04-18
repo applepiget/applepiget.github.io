@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Pai-Coding," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,17 +79,14 @@
 
 
 
-<meta name="description" content="技术派项目总结1.Redis中都缓存了哪些数据 ​	当前登录的用户id，活跃度排行榜，用户操作数据包括点赞以及阅读量，文章的阅读量，pv&#x2F;uv，作者白名单。 ​	使用Redis缓存这些数据的好处：提升了用户的访问速度，减少了MySQL的访问频率。 2.缓存中的数据丢失怎么解决 ​	对缓存中的数据做了持久化，采用了混合持久化的方式，每次写命令都会将命令同步到AOF文件中。 通过编辑 Red">
 <meta property="og:type" content="article">
-<meta property="og:title" content="技术派项目总结">
-<meta property="og:url" content="http://example.com/2025/04/14/%E6%8A%80%E6%9C%AF%E6%B4%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="XXL-JOB">
+<meta property="og:url" content="http://example.com/2025/04/16/XXL-JOB/index.html">
 <meta property="og:site_name" content="Udon">
-<meta property="og:description" content="技术派项目总结1.Redis中都缓存了哪些数据 ​	当前登录的用户id，活跃度排行榜，用户操作数据包括点赞以及阅读量，文章的阅读量，pv&#x2F;uv，作者白名单。 ​	使用Redis缓存这些数据的好处：提升了用户的访问速度，减少了MySQL的访问频率。 2.缓存中的数据丢失怎么解决 ​	对缓存中的数据做了持久化，采用了混合持久化的方式，每次写命令都会将命令同步到AOF文件中。 通过编辑 Red">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-14T11:57:00.000Z">
-<meta property="article:modified_time" content="2025-04-18T06:20:32.599Z">
+<meta property="article:published_time" content="2025-04-16T05:54:17.000Z">
+<meta property="article:modified_time" content="2025-04-16T05:54:17.724Z">
 <meta property="article:author" content="Zeng Xu">
-<meta property="article:tag" content="Pai-Coding">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2025/04/14/技术派项目总结/"/>
+  <link rel="canonical" href="http://example.com/2025/04/16/XXL-JOB/"/>
 
 
 
 
 
-  <title>技术派项目总结 | Udon</title>
+  <title>XXL-JOB | Udon</title>
   
 
 
@@ -287,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/14/%E6%8A%80%E6%9C%AF%E6%B4%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/16/XXL-JOB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -304,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">技术派项目总结</h1>
+          <h1 class="post-title" itemprop="name headline">XXL-JOB</h1>
         
 
         <div class="post-meta">
@@ -316,8 +313,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2025-04-14T19:57:00+08:00">
-                2025-04-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2025-04-16T13:54:17+08:00">
+                2025-04-16
               </time>
             
 
@@ -348,7 +345,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3.3k
+                  0
                 </span>
               
 
@@ -364,7 +361,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  12
+                  1
                 </span>
               
             </div>
@@ -385,94 +382,7 @@
       
 
       
-        <h1 id="技术派项目总结"><a href="#技术派项目总结" class="headerlink" title="技术派项目总结"></a>技术派项目总结</h1><p><strong>1.Redis中都缓存了哪些数据</strong></p>
-<p>​	当前登录的用户id，活跃度排行榜，用户操作数据包括点赞以及阅读量，文章的阅读量，pv&#x2F;uv，作者白名单。</p>
-<p>​	使用Redis缓存这些数据的好处：提升了用户的访问速度，减少了MySQL的访问频率。</p>
-<p><strong>2.缓存中的数据丢失怎么解决</strong></p>
-<p>​	对缓存中的数据做了持久化，采用了混合持久化的方式，每次写命令都会将命令同步到AOF文件中。</p>
-<p>通过编辑 Redis 的配置文件 redis.conf 来进行设置，或者在运行时通过 Redis 命令行动态调整。</p>
-<p>RDB 持久化通过在配置文件中设置快照（snapshotting）规则来启用。这些规则定义了在多少秒内如果有多少个键被修改，则自动执行一次持久化操作。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">save 900 1      # 如果至少有1个键被修改，900秒后自动保存一次</span><br><span class="line">save 300 10     # 如果至少有10个键被修改，300秒后自动保存一次</span><br><span class="line">save 60 10000   # 如果至少有10000个键被修改，60秒后自动保存一次</span><br></pre></td></tr></table></figure>
-
-<p>AOF 持久化是通过在配置文件中设置 appendonly 参数为 yes 来启用的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
-
-<p>此外，还可以配置 AOF 文件的写入频率，这是通过 appendfsync 设置的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">appendfsync always    # 每次写入数据都同步，保证数据不丢失，但性能较低</span><br><span class="line">appendfsync everysec  # 每秒同步一次，折衷方案</span><br><span class="line">appendfsync no        # 由操作系统决定何时同步，性能最好，但数据安全性最低</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>3.排行榜如何实现</strong></p>
-<p>​	对用户的操作进行监听，触发更新事件，细节见下面两个问题。</p>
-<p><strong>4.增加或减少活跃度时如何做幂等判断</strong></p>
-<p>​	一个简单的方案就是将用户的每个加分项，都直接记录下来，在执行具体加分时，基于此来做幂等判定。基于上面这个思路，很容易想到的一个方案就是，每个用户维护一个<strong>活跃更新操作历史记录表</strong>，我们先尽量设计得轻量级一点。直接将用户的历史日志，保存在redis的hash数据结构中，每天对应一个记录。</p>
-<p>​	在增加&#x2F;减少活跃度时，首先查询缓存判断是否已经进行过这种操作，如果没有就继续执行，否则直接返回。</p>
-<pre><code>key: activity_rank_&#123;user_id&#125;_&#123;年月日&#125;
-field: 活跃度更新key
-value: 添加的活跃度
-</code></pre>
-<p>​	</p>
-<p><strong>5.如何更新排行榜</strong></p>
-<p>​	首先为了保证活跃度更新时的原子性，使用Redis中zset提供的incr方法对数据进行增减。</p>
-<p>​	对于用户的操作通过事件监听出发活跃度的更新，Listener代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EventListener(classes = NotifyMsgEvent.class)</span></span><br><span class="line">    <span class="meta">@Async</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">notifyMsgListener</span><span class="params">(NotifyMsgEvent msgEvent)</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> (msgEvent.getNotifyType()) &#123;</span><br><span class="line">            <span class="keyword">case</span> COMMENT:</span><br><span class="line">            <span class="keyword">case</span> REPLY:</span><br><span class="line">                <span class="type">CommentDO</span> <span class="variable">comment</span> <span class="operator">=</span> (CommentDO) msgEvent.getContent();</span><br><span class="line">                userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setRate(<span class="literal">true</span>).setArticleId(comment.getArticleId()));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> COLLECT:</span><br><span class="line">                <span class="type">UserFootDO</span> <span class="variable">foot</span> <span class="operator">=</span> (UserFootDO) msgEvent.getContent();</span><br><span class="line">                userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setCollect(<span class="literal">true</span>).setArticleId(foot.getDocumentId()));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> CANCEL_COLLECT:</span><br><span class="line">                foot = (UserFootDO) msgEvent.getContent();</span><br><span class="line">                userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setCollect(<span class="literal">false</span>).setArticleId(foot.getDocumentId()));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> PRAISE:</span><br><span class="line">                foot = (UserFootDO) msgEvent.getContent();</span><br><span class="line">                userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setPraise(<span class="literal">true</span>).setArticleId(foot.getDocumentId()));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> CANCEL_PRAISE:</span><br><span class="line">                foot = (UserFootDO) msgEvent.getContent();</span><br><span class="line">                userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setPraise(<span class="literal">false</span>).setArticleId(foot.getDocumentId()));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> FOLLOW:</span><br><span class="line">                <span class="type">UserRelationDO</span> <span class="variable">relation</span> <span class="operator">=</span> (UserRelationDO) msgEvent.getContent();</span><br><span class="line">                userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setFollow(<span class="literal">true</span>).setFollowedUserId(relation.getUserId()));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> CANCEL_FOLLOW:</span><br><span class="line">                relation = (UserRelationDO) msgEvent.getContent();</span><br><span class="line">                userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setFollow(<span class="literal">false</span>).setFollowedUserId(relation.getUserId()));</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​	此外，用户发布文章也会增加活跃度，额外设置一个Listener，监听文章发布事件，当文章成功发布（状态为Online），出发更新操作，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Async</span></span><br><span class="line">    <span class="meta">@EventListener(ArticleMsgEvent.class)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">publishArticleListener</span><span class="params">(ArticleMsgEvent&lt;ArticleDO&gt; event)</span> &#123;</span><br><span class="line">        <span class="type">ArticleEventEnum</span> <span class="variable">type</span> <span class="operator">=</span> event.getType();</span><br><span class="line">        <span class="keyword">if</span> (type == ArticleEventEnum.ONLINE) &#123;</span><br><span class="line">            userActivityRankService.addActivityScore(ReqInfoContext.getReqInfo().getUserId(), <span class="keyword">new</span> <span class="title class_">ActivityScoreBo</span>().setPublishArticle(<span class="literal">true</span>).setArticleId(event.getContent().getId()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>具体实现细节：</strong></p>
-<p>​	当监听到用户操作时，Listener首先判断操作类型，然后通过接口userActivityRankService中的addActivityScore方法对用户的活跃读进行增减。</p>
-<p>​	在真正对分数进行修改前，通过userfoot表（用户足迹表，记录了用户对某篇文章的一系列操作，包括点赞、收藏等）查询用户之前是否进行过这种操作，如果存在记录直接返回，否则进行活跃度的更新。</p>
-<p><strong>6.项目中的JWT时如何实现的</strong></p>
-<p>​	项目中的JWT token用的<strong>长 token</strong>，配置了 <strong>30 天的有效期</strong>，这样用户体验更流畅，不用频繁重新登录。 用户登录成功后，后端将生成的jwt返回给前端，然后前端将其保存在本地缓存；</p>
-<p>​	之后前端与后端的交互时，都将JWT token放在请求头中，比如可以将其放在Http身份认证的请求头Authorization中，也可以通过自定义的请求头来传递；后端接收到用户的请求，从请求头中获取JWT，然后进行校验，通过之后，才响应相关的接口；否则表示未登录 。</p>
-<p><strong>7.JWT不支持续期，如果用户正在使用中JWT失效了如何解决</strong></p>
-<p>​	每次用户请求时，如果离过期不远了（比如只剩 5 分钟），就自动生成一个新的 token；返回给前端 → 前端替换旧 token； </p>
-<p>​	或者用 Redis 设置一个有效期 + TTL（<strong>Time To Live，生存时间</strong>）滑动延长。用户登录的时候，生成一个 token，将 token 存入 Redis，设置有效期，比如说三十分钟。 用户发起请求时，在拦截器中获取 token，验证其是否在 Redis 中，是否过期。如果有效内，自动延长 30 分钟。 每次请求都延期一下，<strong>让 TTL 滑动前进</strong>，用户只要活跃就不会掉线。一旦用户长时间不操作，TTL 自动过期，登录状态失效。</p>
-<p><strong>8.从ES中的hits获得了文章id，再去查数据库，性能会提升吗？为什么要用ES而不直接去MySQL里面查</strong></p>
-<p>​	对于全文检索场景，ES 毫秒级响应（倒排索引），更适合模糊搜索（如文章标题、内容），使用MySQL的LIKE模糊查询速度慢，如果又前缀模糊的情况还会导致全表搜索。复杂条件组合查询（如标签+时间+关键词），ES单次查询效率远高于MySQL多表关联 ，ES专注复杂搜索，MySQL承担事务型操作，符合计算存储分离趋势。可先通过ES筛选符合条件的文章ID，再用MySQL补全未索引字段。</p>
-<p><strong>9.如果这个项目在高并发的场景下，比如很多用户同时点赞评论，应该如何优化？</strong></p>
-<p>RabbitMQ 削峰；</p>
-<p>或者通过令牌桶或漏桶算法限制突发流量，如 RateLimiter；另外，将短时间内的多次点赞合并为一次操作，短时间内同一文章的多条点赞合并为一次INCR操作。</p>
-<p><strong>10.采用自旋锁策略优化缓存结构，针对热key的并发访问进行同步，防止其失效时导致的缓存击穿</strong></p>
-<p>​	当某个Key失效时，第一个请求发现缓存未命中，尝试通过CAS操作获取锁，其他并发请求在短时间内（如1ms）自旋轮询锁状态，避免线程阻塞和上下文切换开销。获得锁的线程从数据库加载数据并写入缓存，完成后释放锁，其他请求直接从缓存读取。 在业务代码中埋点，针对特定场景（如热门文章、秒杀商品）预标记为热Key。</p>
-<p><strong>11.用户如何进行登录的</strong></p>
-<p>​	1) 使用用户名和密码进行登录，用户输入用户名和密码，然后到数据库进行校验，如果查询到了记录，返回session放入响应体中，否则返回登录异常信息。用户注册时，对密码进行加盐并进行md5编码存储到数据库中。</p>
-<p>​	2）微信公众号登录，</p>
-<p><strong>12.项目难点</strong></p>
-<p>​	1）自定义的<strong>雪花算法</strong>：时间戳从亳秒改为秒；生成id前五位：年+天；</p>
-<p>workCenterld:dataCenterld&#x3D;3:7；当时钟回拨时，等待时间追上，而不是直接抛异常。</p>
-<p>​	**雪花算法缺点：**强依赖机器时钟，如果机器上时钟回拨，会导致发号重复或者服务会处于不可用状态。</p>
-<p>​	在项目中，并不是每次需要id时，再去调用雪花算法来实时生成;更常见的做法时提前生成好，放在队列中，有需要就从中获取;当队列数据少于某个值时，自动填充id上面这个思路，可以说是将雪花算法 +号段的思想结合起来，应用于业务主键id的生成，最大限度的提高id生成器的可用性以及相应效率。</p>
-<p>​	<strong>针对如果是今天发的文章，但是队列中保存的仍然是昨天的id，如何解决？</strong></p>
-<p>​	如果出现了跨天的情况，会将队列中的id清空</p>
-<p>2）<strong>分布式锁</strong>：<br>	使用Redis 的 <code>setIfAbsent(key,value,time)</code>手动释放锁，但遇到了锁不能及时释放的问题、误释放别人的锁，以及过期时间的设置是否合理等问题。</p>
-<p>​	<strong>导致错误释放别人的锁的原因：</strong></p>
-<p>​	1）<strong>未记录锁的持有者</strong>：释放锁时未校验当前锁是否属于自己，直接删除 key。</p>
-<p>​	2）<strong>锁过期与业务处理不同步</strong>：业务处理时间超过锁的过期时间，导致锁被提前释放，其他客户端获取到新锁，原客户端仍误认为自己持有锁。</p>
-<p>​	<strong>正确释放方法：</strong></p>
-<p>​	1）获取锁是携带唯一标识，标识着锁的持有者；</p>
-<p>​	2）释放锁是，使用Lua脚本原子性的校验并删除锁。</p>
-<p>​	最后引入 Redission 的看门狗算法进行解决，这样就可以一劳永逸了，不过手动尝试的方式的确也让我对看门狗算法有了一个更深入更直接的了解，它的内部实现也是按照我之前手动的逻辑实现的，起一个定时任务，每 10 秒检查一下锁是否释放，如果没有释放就延长至 30 秒。</p>
-<p><strong>13.项目优化</strong></p>
-<p><strong>14.本地缓存</strong></p>
-<p>​	引入Caffeine，对页面的侧边栏进行缓存，侧边栏数据变动较少，大多时候都不会改变，能够有效减少访问数据库的次数。</p>
-<p>​	在**@Cacheable<strong>中添加参数</strong>cacheManager**指定要使用哪个 <code>CacheManager</code> 来管理缓存操作。要是不指定 <code>cacheManager</code> 属性，Spring 会采用默认的 <code>cacheManager</code>。</p>
-<p><strong>15.Lua脚本为什么能保证原子性</strong></p>
-<p>​	1）Redis 采用<strong>单线程</strong>的事件循环机制来处理客户端的请求。这意味着在同一时间，Redis 只能执行一个命令或者一个 Lua 脚本。当一个 Lua 脚本被发送到 Redis 服务器执行时，Redis 会暂停处理其他客户端的请求，直到该 Lua 脚本执行完毕。</p>
-<p>​	2）Redis 内置了 Lua 解释器，当接收到一个 Lua 脚本时，Redis 会将其加载到内存中并执行。整个脚本的执行过程是连续的，不会被其他命令打断。</p>
-<p>​	3）在 Redis 中，Lua 脚本可以看作是一种特殊的事务。它将多个 Redis 命令组合在一起，<strong>要么全部执行成功，要么全部不执行</strong>。如果在 Lua 脚本执行过程中出现错误，Redis 会停止脚本的执行，并将错误信息返回给客户端，<strong>脚本中已经执行的命令不会被回滚，但后续的命令不会再执行</strong>，保证了操作的一致性。</p>
-<p><strong>16.项目中的XXL-JOB是怎么使用的，与Spring Task的区别是什么</strong></p>
-<p>项目中的XXL-JOB主要是定期将社区中的数据进行导出，比如说为了分析网站的运营情况，可以将排行榜数据定时导出，或者将网站的pv&#x2F;uv导出。具体实现方式将会在下面介绍。</p>
-<p><strong>Spring Task</strong>：</p>
-<p><strong>轻量级集成</strong>：作为 Spring 框架的一部分，无需额外部署，直接通过注解（如 <code>@Scheduled</code>）在 Spring Boot 项目中实现定时任务。</p>
-<p><strong>单机模式</strong>：任务调度与业务逻辑耦合在同一应用内，依赖本地线程池执行任务，不支持分布式部署。</p>
-<p><strong>XXL-JOB</strong>：</p>
-<p><strong>分布式调度平台</strong>：采用「调度中心 + 执行器」架构，支持集群部署。调度中心负责任务管理和触发，执行器独立部署并执行任务逻辑。</p>
-<p><strong>解耦设计</strong>：调度中心与执行器通过 HTTP 通信，任务逻辑与调度逻辑分离，便于横向扩展。</p>
-<p><strong>17.为什么使用RabbitMQ</strong></p>
-<p>​	首先是社区活跃度高，然后 RabbitMQ 还提供了有一个易用的用户界面，可以让用户监控和管理消息，同时我们的系统对并发要求没有那么高，消息通知也可以无序，且 RabbitMQ 也文持消息路由，宕机后的消息也能自动恢复，所以就选择了 RabbitMQ。</p>
-
+        
       
     </div>
     
@@ -487,12 +397,6 @@ value: 添加的活跃度
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Pai-Coding/" rel="tag"># Pai-Coding</a>
-          
-        </div>
-      
 
       
       
@@ -502,8 +406,8 @@ value: 添加的活跃度
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2025/04/14/%E9%9A%8F%E7%AC%94/" rel="next" title="随笔">
-                <i class="fa fa-chevron-left"></i> 随笔
+              <a href="/2025/04/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="next" title="动态规划">
+                <i class="fa fa-chevron-left"></i> 动态规划
               </a>
             
           </div>
@@ -512,8 +416,8 @@ value: 添加的活跃度
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2025/04/15/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="prev" title="动态规划">
-                动态规划 <i class="fa fa-chevron-right"></i>
+              <a href="/2025/04/16/JavaSE/" rel="prev" title="JavaSE">
+                JavaSE <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -566,17 +470,8 @@ value: 添加的活跃度
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -627,22 +522,6 @@ value: 添加的活跃度
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%B4%BE%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">技术派项目总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
